@@ -1,0 +1,22 @@
+; SSSP.def : モジュール パラメータを宣言します。
+
+LIBRARY      "SSSP.DLL"
+
+EXPORTS
+	;DllCanUnloadNow		PRIVATE
+	;DllGetClassObject	PRIVATE
+	;DllRegisterServer	PRIVATE
+	;DllUnregisterServer	PRIVATE
+	;DllInstall		PRIVATE
+	SspLoadPlugin		@1
+	SspApplyProc		@2
+	SspInitProc			@3
+	SspReleaseProc		@4
+	SspButtonProc		@5
+	SspGetWheelEffect	@6
+	SspWheelProc		@7
+	SspScrollProc		@8
+	SspDialogProc		@9
+	SspGetIcon			@10
+	SspGetString		@11
+	SspTimerProc		@12

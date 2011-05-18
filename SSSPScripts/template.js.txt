@@ -1,0 +1,83 @@
+
+function onLoad() {
+	//TraceOut('onLoad');
+	SetTitle('TITLE');
+	SetWheelDefault(true);
+	SetScrollDefault(true);
+	//SetScrollParams(20, 2000);
+	//SetWheelParams(3, 1000);
+	updateButtons();
+}
+
+function isApplicable(window) {
+	//TraceOut('isApplicable');
+	return false;
+}
+
+function onScroll(window, lx, ly, d) {
+	if (ly != 0) {
+		SendMouseWheel(hWindow, 0, -ly * WHEEL_DELTA / 4);
+	}
+	if (lx != 0) {
+		SendMouseHWheel(hWindow, 0, lx * WHEEL_DELTA / 4);
+	}
+}
+
+Import("common.inc");
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// アクション
+//
+////////////////////////////////////////////////////////////////////////////////
+
+var key_enter = {
+	text:'キー:Enter',
+	exec:function (w) {
+		SendInput([
+			KEY_DOWN(VK_RETURN),
+			KEY_UP(VK_RETURN)
+		]);
+	}
+};
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// 機能割り当て
+//
+////////////////////////////////////////////////////////////////////////////////
+
+var clickActions = [
+	noop,			noop,			noop,			noop,
+	noop,			noop,			noop,			noop,
+	noop
+];
+
+var doubleClickActions = [
+	noop,			noop,			noop,				noop,
+	noop,			noop,			noop,				noop,
+	noop
+];
+
+var tripleClickActions = [
+	noop,			noop,			noop,				noop,
+	noop,			noop,			noop,				noop,
+	noop
+];
+
+var longPressActions = [
+	noop,			noop,			noop,				noop,
+	noop,			noop,			noop,				noop,
+	noop
+];
+
+var longLongPressActions = [
+	noop,			noop,			noop,				noop,
+	noop,			noop,			noop,				noop,
+	noop
+];
+
+var wheelActions = [
+	noop,
+	noop
+];

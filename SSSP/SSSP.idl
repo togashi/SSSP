@@ -1,0 +1,141 @@
+// SSSP.idl : SSSP の IDL ソース
+//
+
+// このファイルは、タイプ ライブラリ (SSSP.tlb) およびマーシャリング コードを
+// 作成するために MIDL ツールによって処理されます。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+// ISmartScrollAPI
+[
+	object,
+	uuid(0BE1419D-0099-4BFA-8836-D9851F8FDCDE),
+	dual,
+	pointer_default(unique)
+]
+interface ISmartScrollAPI : IDispatch {
+	//[id(1)] HRESULT SspLoadRegSetting([in] BSTR key, [out, retval] VARIANT *ret);
+	//[id(2)] HRESULT SspLoadRegValue([in] BSTR key, [in] BSTR name, [out, retval] VARIANT *ret);
+	//[id(3)] HRESULT SspSaveRegSetting([in] BSTR key, [in] VARIANT *set, [out, retval] VARIANT *ret);
+	//[id(4)] HRESULT SspSaveRegValue([in] BSTR key, [in] BSTR name, [in] VARIANT *val, [out, retval] VARIANT *ret);
+	//[id(5)] HRESULT SspDeleteRegKey([in] BSTR key, [out, retval] VARIANT *ret);
+	//[id(6)] HRESULT SspDeleteRegValue([in] BSTR key, [in] BSTR name, [out, retval] VARIANT *ret);
+
+	//[id(7)] HRESULT SspDrawComboBox(H
+
+	[id(1)] HRESULT TraceOut([in] BSTR msg);
+	[id(2)] HRESULT LoadPluginResource(void);
+	[id(3)] HRESULT GetFileVersion([in] BSTR filename, [out, retval] BSTR *ret);
+	[id(4)] HRESULT ShowSmartScrollPad([in] VARIANT *vShow, [out, retval] VARIANT *vRet);
+};
+
+// ISSSPApi
+[
+	object,
+	uuid(2744211F-6927-4087-95D2-2005D3C849BC),
+	dual,
+	pointer_default(unique)
+]
+interface ISSSPAPI : IDispatch {
+	[] HRESULT SetTitle([in] BSTR txt, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetButtonParams([in] DWORD b, [in] DWORD dbl, [in] DWORD tri, [in] DWORD lng, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetButtonText([in] DWORD b, [in] BSTR txt, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetButtonImage([in] DWORD b, [in] BSTR fn, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetWheelParams([in] DWORD threshold, [in] DWORD time, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetScrollParams([in] DWORD threshold, [in] DWORD time, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT EnableTimer([in] VARIANT_BOOL bEnabled, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT EnableWheel([in] VARIANT_BOOL bEnabled, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetWheelDefault([in] VARIANT_BOOL bDefault, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT SetScrollDefault([in] VARIANT_BOOL bDefault, [out, retval] VARIANT_BOOL *ret);
+	[] HRESULT Import([in] BSTR filename, [out, retval] VARIANT *ret);
+};
+
+
+
+// IWin32API
+[
+	object,
+	uuid(A8996C1D-E863-422e-AB14-F6523AEFB628),
+	dual,
+	pointer_default(unique)
+]
+interface IWin32API : IDispatch {
+	[id(1)] HRESULT GetClassName([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	[id(2)] HRESULT GetWindowText([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	[id(3)] HRESULT SetWindowText([in] DWORD dwWnd, [in] BSTR sTxt, [out, retval] VARIANT *vRet);
+	[id(4)] HRESULT GetAncestor([in] DWORD dwWnd, [in] DWORD gaFlags, [out, retval] VARIANT *vRet);
+	
+	[id(5)] HRESULT FindWindow([in] VARIANT ClassName, [in] VARIANT WindowName, [out, retval] VARIANT *vRet);
+	[id(6)] HRESULT FindWindowEx([in] DWORD dwWndParent, [in] DWORD dwWndChildAfter, [in] VARIANT ClassName, [in] VARIANT WindowName, [out, retval] VARIANT *vRet);
+
+	[] HRESULT Sleep([in] DWORD dwTime);
+	[] HRESULT GetTickCount([out, retval] VARIANT *vRet);
+	[] HRESULT MapVirtualKey([in] DWORD dwCode, [in] DWORD dwMapType, [out, retval] VARIANT *vRet);
+
+	[] HRESULT MessageBox([in] DWORD dwWnd, [in] BSTR msg, [in] BSTR ttl, [in] VARIANT flags, [out, retval] VARIANT *vRet);
+	[] HRESULT MessageBeep([in] DWORD dwType, [out, retval] VARIANT *vRet);
+
+	// WM_VSCROLL 送信
+	[id(101)] HRESULT SendVScroll([in] DWORD dwWnd, [in] DWORD order, [in] DWORD thumb, [in] DWORD dwWndScrollbar, [out, retval] VARIANT *vRet);
+	// WM_HSCROLL 送信
+	[id(102)] HRESULT SendHScroll([in] DWORD dwWnd, [in] DWORD order, [in] DWORD thumb, [in] DWORD dwWndScrollbar, [out, retval] VARIANT *vRet);
+	// WM_MOUSEWHEEL 送信
+	[id(103)] HRESULT SendMouseWheel([in] DWORD dwWnd, [in] DWORD dwFlags, [in] LONG dy, [out, retval] VARIANT *vRet);
+	// WM_MOUSEHWHEEL 送信
+	[id(104)] HRESULT SendMouseHWheel([in] DWORD dwWnd, [in] DWORD dwFlags, [in] LONG dx, [out, retval] VARIANT *vRet);
+	// SendInput のマウス特化版
+	[id(105)] HRESULT SendWheelInput([in] LONG dx, [in] LONG dy, [out, retval] VARIANT *vRet);
+	
+	[] HRESULT ShowWindow([in] DWORD dwWnd, [in] DWORD dwShowCmd, [out, retval] VARIANT *vRet);
+	// GetWindowPlacement のサブセット
+	[] HRESULT GetWindowState([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	
+	[] HRESULT GetAsyncKeyState([in] DWORD dwVK, [out, retval] VARIANT *vRet);
+	// SendInput のキーボード特化版
+	[] HRESULT SendKeybdInput([in] DWORD dwVk, [in] VARIANT_BOOL bUp, [out, retval] VARIANT *vRet);
+	
+	// WaitForInputIdle のラッパ(対象をプロセスからウィンドウに変更)
+	[] HRESULT WaitForInputIdle([in] DWORD dwWnd, [in] DWORD dwTimeout, [out, retval] VARIANT *vRet);
+
+	// 配列で引数を渡すように調整された SendInput
+	[] HRESULT SendInput([in] VARIANT inputs, [out, retval] VARIANT *vRet);
+	
+	[] HRESULT SetWindowPos([in] DWORD dwWnd, [in] DWORD dwWndInsertAfter, [in] LONG x, [in] LONG y, [in,defaultvalue(0)] LONG cx, [in,defaultvalue(0)] LONG cy, [in,defaultvalue(65)] DWORD dwFlags, [out, retval] VARIANT *vRet);
+	// 結果を配列で返すように調整された GetWindowRect
+	[] HRESULT GetWindowRect([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	// 結果を配列で返すように調整された GetCursorPos
+	[] HRESULT GetCursorPos([out, retval] VARIANT *vRet);
+	[] HRESULT SetCursorPos([in] LONG x, [in] LONG y, [out, retval] VARIANT *vRet);
+
+	// 結果を配列で返すように調整された GetVersionEx
+	[] HRESULT GetVersionEx([out, retval] VARIANT *vRet);
+	
+	//[] HRESULT ImmGetContext([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	//[] HRESULT ImmSetOpenContext([in] DWORD dwIMC, [in] VARIANT_BOOL fOpen, [out, retval] VARIANT *vRet);
+
+	// WM_COMMAND 送信
+	[id(111)] HRESULT SendCommand([in] DWORD dwWnd, [in] DWORD wHi, [in] DWORD wLo, [in] DWORD hWndCtrl, [out, retval] VARIANT *vRet);
+	// WM_SYSCOMMAND 送信
+	[id(112)] HRESULT SendSysCommand([in] DWORD dwWnd, [in] DWORD dwID, [in] DWORD lParam, [out, retval] VARIANT *vRet);
+	[id(199)] HRESULT SendMessage([in] DWORD dwWnd, [in] DWORD dwMsg, [in] DWORD wParam, [in] DWORD lParam, [out, retval] VARIANT *vRet);
+	[id(200)] HRESULT PostMessage([in] DWORD dwWnd, [in] DWORD dwMsg, [in] DWORD wParam, [in] DWORD lParam, [out, retval] VARIANT *vRet);
+
+	// sspfunc
+	[id(201)] HRESULT GetWindowFilename([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+	// sspfunc
+	[id(202)] HRESULT GetWindowFileVersion([in] DWORD dwWnd, [out, retval] VARIANT *vRet);
+};
+
+// タイプライブラリ
+[
+	uuid(9F17AF32-0347-4DC0-8492-E3484F3123CF)
+]
+library SSSPLib
+{
+	importlib("stdole2.tlb");
+	interface ISmartScrollAPI;
+	interface ISSSPApi;
+	interface ITargetWindow;
+	interface IWin32API;
+};
