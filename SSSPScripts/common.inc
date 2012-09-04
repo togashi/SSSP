@@ -49,9 +49,9 @@ function onButtonTripleClick(window, button) {
 }
 
 function onButtonLongPress(window, button, duration) {
-	if (duration >= 1000 && duration < 2000) {
+	if (duration >= TIME_LONGPRESS && duration < 2 * TIME_LONGPRESS) {
 		longPressActions[button].exec(window);
-	} else if (duration >= 2000 && duration < 3000) {
+	} else if (duration >= 2 * TIME_LONGPRESS && duration < 3 * TIME_LONGPRESS) {
 		longLongPressActions[button].exec(window);
 	}
 }
