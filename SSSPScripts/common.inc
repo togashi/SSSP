@@ -3,6 +3,10 @@ TIME_DOUBLECLICK = 500;
 TIME_TRIPLECLICK = 1000;
 TIME_LONGPRESS = 1000;
 
+TIME_LONGPRESS_1 = 1 * TIME_LONGPRESS;
+TIME_LONGPRESS_2 = 2 * TIME_LONGPRESS;
+TIME_LONGPRESS_3 = 3 * TIME_LONGPRESS;
+
 // コンテクストデータ
 var hWindow = 0;
 var buttonStatus = 'uuuuuuuuu';
@@ -49,9 +53,9 @@ function onButtonTripleClick(window, button) {
 }
 
 function onButtonLongPress(window, button, duration) {
-	if (duration >= TIME_LONGPRESS && duration < 2 * TIME_LONGPRESS) {
+	if (duration >= TIME_LONGPRESS_1 && duration < TIME_LONGPRESS_2) {
 		longPressActions[button].exec(window);
-	} else if (duration >= 2 * TIME_LONGPRESS && duration < 3 * TIME_LONGPRESS) {
+	} else if (duration >= TIME_LONGPRESS_2 && duration < TIME_LONGPRESS_3) {
 		longLongPressActions[button].exec(window);
 	}
 }
